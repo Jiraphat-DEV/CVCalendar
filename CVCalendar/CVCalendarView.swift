@@ -256,7 +256,7 @@ public final class CVCalendarView: UIView {
 // MARK: - Frames update
 
 extension CVCalendarView {
-    public func commitCalendarViewUpdate() {
+    public func commitCalendarViewUpdate(n_padding: CGFloat = 0) {
         if currentOrientation != UIDevice.current.orientation {
             validated = false
             currentOrientation = UIDevice.current.orientation
@@ -272,7 +272,9 @@ extension CVCalendarView {
             let allowed = selfSize.width <= screenSize.width && selfSize.height <= screenSize.height
 
             if !validated && allowed {
-                let width = selfSize.width
+                
+                let width = selfSize.width - (n_padding * 2)
+//                let width = selfSize.width
                 let height: CGFloat
                 let countOfWeeks = CGFloat(6)
 
@@ -310,8 +312,10 @@ extension CVCalendarView {
                     dayViewSize = CGSize(width: (width / 7.0) - hSpace, height: height)
                     validated = true
 
-                    contentController
-                        .updateFrames(selfSize != contentViewSize ? bounds : CGRect.zero)
+//                    contentController.updateFrames(selfSize != contentViewSize ? bounds : CGRect.zero)
+
+                    contentController.updateFrames(CGRect(x: n_padding, y: 0, width: selfSize.width - (2 * n_padding), height: selfSize.height))
+
                 }
             }
         }
