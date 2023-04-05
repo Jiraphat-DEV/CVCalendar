@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 GameApp. All rights reserved.
 //
 
+// Jiraphat-DEV
+
 import UIKit
 
 public typealias WeekView = CVCalendarWeekView
