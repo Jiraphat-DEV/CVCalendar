@@ -132,12 +132,13 @@ public final class CVCalendarMenuView: UIView {
         }
     }
 
-    public func commitMenuViewUpdate() {
+    public func commitMenuViewUpdate(n_padding: CGFloat = 0) {
         setNeedsLayout()
         layoutIfNeeded()
         if let _ = delegate {
             let space = 0 as CGFloat
-            let width = self.frame.width / 7 - space
+//            let width = self.frame.width / 7 - space
+            let width = (self.frame.width - (n_padding * 2)) / 7 - space
             let height = self.frame.height
 
             var x: CGFloat = 0
@@ -146,7 +147,7 @@ public final class CVCalendarMenuView: UIView {
             for i in 0..<self.symbolViews!.count {
                 x = CGFloat(i) * width + space
 
-                let frame = CGRect(x: x, y: y, width: width, height: height)
+                let frame = CGRect(x: x + n_padding, y: y, width: width, height: height)
                 let symbol = self.symbolViews![i]
                 symbol.frame = frame
             }
